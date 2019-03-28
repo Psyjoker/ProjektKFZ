@@ -100,18 +100,27 @@ $reparaturId = $dsatz2['repid'];
 $_SESSION['repid'] = $reparaturId;
 
 // Das Bearbeiten-Formular anzeigen
-echo "<p>" . "<b>" . "Kunde: " . "</b>". "$kdnr" . " " . "$kdnam". " " . "<b>" . "Fahrzeug: " . "</b>". "$marke" . " " . "$typ" . " " . "$kz" .  "</p>";
-echo "<p>" . "<b>" . "Reparaturauftrag: " . "</b>". "$id" . "<b>" . " " . "Datum: " . "</b>". "$datum2" . "</p>";
-echo "<p>" . "<b>" . "Bemerkung: "  . "</b>" . "$bez2" . "</p>";
-echo "</form>";
-
-//Zurück zur Übersicht oder drucken
-
-echo "<a href='auftrag.php'  class='btn btn-secondary btn-lg'>Zurück zur Übersicht</a>";?> <form method='post'><input type="submit" name="drucken" formaction="auftragdruck.php" value="Reparaturauftrag drucken"  class="btn btn-info btn-lg" formtarget="_blank">
+?>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+    <?php
+    echo "<p>" . "<b>" . "Kunde: " . "</b>". "$kdnr" . " " . "$kdnam". " " . "<b>" . "Fahrzeug: " . "</b>". "$marke" . " " . "$typ" . " " . "$kz" .  "</p>";
+    echo "<p>" . "<b>" . "Reparaturauftrag: " . "</b>". "$id" . "<b>" . " " . "Datum: " . "</b>". "$datum2" . "</p>";
+    echo "<p>" . "<b>" . "Bemerkung: "  . "</b>" . "$bez2" . "</p>";
+    echo "</form>";?>
+    </div>
+    <div class="col-sm">
+     <?php
+     echo "<a href='auftrag.php'  class='btn btn-secondary btn-lg'>Zurück zur Übersicht</a>";?> <form method='post'><input type="submit" name="drucken" formaction="auftragdruck.php" value="Reparaturauftrag drucken"  class="btn btn-info btn-lg" formtarget="_blank">
+    
+    </div>
+    </div>
+</div>
 <?php
 
 echo"</form>";
-echo "<br><br>";
+echo "<br>";
 
 include "newrep.php";
 
