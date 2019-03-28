@@ -70,43 +70,25 @@ mysqli_query($conn, "SET NAMES 'utf8'");
 
 
      
-    <tr><td><label>Kunden Name: </label> 
+    <tr><td><label>Kunden mit Auto auswählen: </label> 
      <select name="dbk1"> 
-        <option>Select</option>
+        <option> Bitte auswählen</option>
         
             <?php
 
-             if ($stmt=$conn->query("SELECT * FROM kunde"))
+             if ($stmt=$conn->query("SELECT `kundennummer`, `kennzeichen`, `marke`, `typ`, `vorname`,  `nachname` FROM fahrzeug 
+             LEFT JOIN kunde on kunde.`kundennummer` = fahrzeug.`kundeid` GROUP BY `fzid`"))
              {
                 while($k=$stmt->fetch_array(MYSQLI_ASSOC)){
          
             ?>
 
-        <option value = "<?php echo $k ['vorname'];?>"> <?php echo $k['vorname'] ." ". $k['nachname'];?></option>
+        <option value = "<?php echo $k['kundennummer'] ." ". $k['vorname'] ." ". $k['nachname'] ." ". $k['kennzeichen'] ." ". $k['marke'] ." ". $k['typ'];?>"> <?php echo $k['kundennummer'] ." ". $k['vorname'] ." ". $k['nachname'] ." ". $k['kennzeichen'] ." ". $k['marke'] ." ". $k['typ'];?></option>
 
         <?php } } ?>
           
      </select>
     </td></tr>
-
-      <!-- 2th dblist -->
-    <tr><td><select name="dbf1">
-
-     <option>Verfügbare Autos</option>
-     
-     <?php 
-      
-      if ($stmt=$conn->query("SELECT * FROM fahrzeug"))
-      {
-         while($f=$stmt->fetch_array(MYSQLI_ASSOC)){
-         
-     ?>
-     <option value = "<?php echo $f ['marke'];?>">  <?php echo $f['marke'] ." - ". $f['typ'] . "-" . $f['kennzeichen']; ?></option>
-    
-     <?php } }  ?>
-    
-    
-    </select></td></tr>
 
     <tr><td>Status<input type="text" name="nachname"></td></tr>
     <tr><td><button type="submit">Eingeben</button></td></tr>
