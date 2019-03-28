@@ -47,7 +47,10 @@
 <title>Neuen Auftrag erstellen:</title>
 
 </head><body>
-
+<?php
+session_start();
+session_destroy(); 
+?>
 <h1>Neuen Auftrag anlegen:</h1>
 
 <form action="auftragneu.php" method="post">
