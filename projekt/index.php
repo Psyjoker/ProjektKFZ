@@ -35,12 +35,23 @@
 <?php
     $pdo = new PDO('mysql:host=localhost;dbname=dbkfz', 'root', '');
 
-    $sql = "SELECT kundennummer, anrede, titel, vorname, nachname, gebdat, strasse, plz, ort, telefon, email, newsletter, kommentar, kundeseit FROM kunde";
+    $sql = "SELECT kundennummer, anrede, titel, vorname, nachname, gebdat, strasse, plz, ort, telefon, email, newsletter, kommentar, kundeseit, anzeige FROM kunde";
     foreach ($pdo->query($sql) as $row) { ?>
+
 
     <tr>
       <td> 
-        <button onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='block'" class="w3-button"><?php echo "<H4>".$row['kundennummer']." | ".$row['anrede']." ".$row['vorname']." ".$row['nachname']."<H4>"; ?></button>
+        <button onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='block'" class="w3-button">
+          <?php
+          $anzeigen= "<H4>".$row['kundennummer']." | ".$row['anrede']." ".$row['vorname']." ".$row['nachname']."<H4>";
+
+            if ($row['anzeige'] > null ){
+               }
+            else {
+              echo $anzeigen;
+                };
+          ?>
+        </button>
       </td>
     </tr>
   <div class="w3-container">
@@ -57,6 +68,8 @@
 
 <?php } ?>
 </table>
+
+
 <!-- Suche -->
 <script>
 function myFunction() {
@@ -85,7 +98,7 @@ function myFunction() {
           
 
   
-<!-- Modal -->
+
 <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -95,7 +108,7 @@ function myFunction() {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      
+      <!-- Modal -->
         <div class="modal-body">
             <form action="kunden/kunden.php" method="GET">
               <table border="0" cellspacing="2" cellpadding="2">
@@ -201,7 +214,7 @@ function myFunction() {
     </div>
   </div>
 </div>
-<!-- Modal -->
+<!-- Modal ende -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
