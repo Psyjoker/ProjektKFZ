@@ -185,6 +185,7 @@ if (isset($_POST['abgeschickt'])){
         
 
         $kdnnam = $_POST['namap'];
+       $_SESSION['kundennummerID']=$kdnnam;
    
         // Anzeige aller Datensätze der Tabelle
         $abfrage = "SELECT reparatur.`fzid`, `repid`,`kennzeichen`, `datum`, `marke`, `typ`, `bemerkung`, `vorname`, `kundennummer`, `nachname` FROM reparatur LEFT JOIN fahrzeug on fahrzeug.`fzid` = reparatur.`fzid`
@@ -281,9 +282,8 @@ echo "</table>";
 
 } else {
     $kdnr2 = $_SESSION['kundennummerID'];
-
     $abfrage4 = "SELECT reparatur.`fzid`, `repid`,`kennzeichen`, `datum`, `marke`, `typ`, `bemerkung`, `vorname`, `kundennummer`, `nachname` FROM reparatur LEFT JOIN fahrzeug on fahrzeug.`fzid` = reparatur.`fzid`
-    LEFT JOIN kunde on kunde.`kundennummer` = fahrzeug.`kundeid` WHERE kundennummer like '%$kdnr2%'  Order By `datum` DESC";
+    LEFT JOIN kunde on kunde.`kundennummer` = fahrzeug.`kundeid` WHERE kundennummer like '$kdnr2'  Order By `datum` DESC";
   
     
     $result4 = mysqli_query($connect, $abfrage4);
@@ -308,22 +308,25 @@ echo "</table>";
     </tr>";
         
     //Inhalt
-        while($row = mysqli_fetch_assoc($result4)){ 
-            echo "<form action='auftragdelet.php' method='post'>";
-            echo"<tr>" .
-                "<td>" ."<input type='hidden' name='auswahledit' value='".$row['repid']."'><input type='submit' class='btn btn-info btn-lg'  formaction='auftragedit.php' value='Edit' />" . "</td>" .
-                "<td>" ."<input type='hidden' name='auswahlkopfedit' value='".$row['repid']."'><input type='submit' class='btn btn-info btn-lg'  formaction='auftrageditkopf.php' value='Edit' />" . "</td>"; ?> 
-                <td><input type="submit" class="btn btn-danger btn-lg" name="auswahl<?php echo $row['repid']; ?>"  value="Delete" onclick="return confirm('Wollen Sie diesen Eintrag wirklich löschen?');" /></td><?php 
-            echo"<td>" . $row['repid']. "</td>" .
-                "<td>" . $row["kundennummer"] . "</td>" .
-                "<td>" . $row["datum"] . "</td>" .
-                "<td>" . $row["marke"] . "</td>" .
-                "<td>" . $row["typ"] . "</td>" .
-                "<td>" . $row["kennzeichen"] . "</td>" .
-                "<td>" . $row["bemerkung"] . "</td>" .
-                "</tr>";
-            echo "</form>";
-        }
+    $result5 = mysqli_query($connect, $abfrage4);
+    while($row = mysqli_fetch_assoc($result5)){
+    
+        
+        echo "<form action='auftragdelet.php'  method='post'>";
+        echo"<tr>" .
+            "<td>" ."<input type='hidden' name='auswahledit' value='".$row['repid']."'><input type='submit' class='btn btn-info btn-lg'  formaction='auftragedit.php' value='Edit' />" . "</td>" .
+            "<td>" ."<input type='hidden' name='auswahlkopfedit' value='".$row['repid']."'><input type='submit' class='btn btn-info btn-lg'  formaction='auftrageditkopf.php' value='Edit' />" . "</td>"; ?> 
+             <td><input type="submit" class="btn btn-danger btn-lg" name="auswahl<?php echo $row['repid']; ?>"  value="Delete" onclick="return confirm('Are you sure you want to delete this item?');" /></td><?php 
+        echo"<td>" . $row['repid']. "</td>" .
+            "<td>" . $row["kundennummer"] . "</td>" .
+            "<td>" . $row["datum"] . "</td>" .
+            "<td>" . $row["marke"] . "</td>" .
+            "<td>" . $row["typ"] . "</td>" .
+            "<td>" . $row["kennzeichen"] . "</td>" .
+            "<td>" . $row["bemerkung"] . "</td>" .
+            "</tr>";
+        echo "</form>";
+    }
     
     echo "</table>";
     }
