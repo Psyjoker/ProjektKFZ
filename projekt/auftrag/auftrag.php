@@ -104,7 +104,6 @@ echo "<input type='submit' class='btn btn-info btn-block' name='eintragen' forma
 echo "<br>";
 echo "</form>";
 ?>
-
 <?php 
 session_start();
 //Variable aus Session laden
@@ -115,7 +114,6 @@ if(isset($_SESSION['kundennummerID'])){
 //Eingabe zur Verarbeitung
 echo "
 <form action='" . $_SERVER['PHP_SELF'] . "' method='post'>
-      
     <table class='table table-bordered'>    
         <tr>
             <td><center><button type='button' class='btn btn-info btn-lg' data-toggle='modal' data-target='#myModal' >Kunde suchen</button></center></td>
@@ -125,7 +123,6 @@ echo "
     </table>
 </form>";
 
-
 //Verbindung zur Datenbank herstellen
 $host_name = 'localhost';
 $user_name = 'root';
@@ -134,7 +131,6 @@ $database = 'dbkfz';
 
 $connect = mysqli_connect($host_name, $user_name, $password, $database);
 mysqli_query($connect, "SET NAMES 'utf8'");
-
 
 if (isset($_POST['abgeschickt'])){
     if( empty ($_POST['namap']) == TRUE){
@@ -234,7 +230,7 @@ if (isset($_POST['abgeschickt'])){
       
         echo "</table>";
     
-            }
+    }
 } else {
 
 // Anzeige aller Datensätze der Tabelle
@@ -312,10 +308,7 @@ echo "</table>";
     </tr>";
         
     //Inhalt
-    
-        while($row = mysqli_fetch_assoc($result4)){
-            
-                
+        while($row = mysqli_fetch_assoc($result4)){ 
             echo "<form action='auftragdelet.php' method='post'>";
             echo"<tr>" .
                 "<td>" ."<input type='hidden' name='auswahledit' value='".$row['repid']."'><input type='submit' class='btn btn-info btn-lg'  formaction='auftragedit.php' value='Edit' />" . "</td>" .
@@ -335,9 +328,7 @@ echo "</table>";
     echo "</table>";
     }
 }
-
-?>
-     
+?> 
 <!-- Modal -->
 <div id="myModal"  class="modal fade" role="dialog" tabindex="-1">
   <div class="modal-dialog modal-lg" role="document">
@@ -385,20 +376,15 @@ echo "</table>";
                     "</tr>";
                     }
                 echo "</form>";
-                echo "</table>";
-                
+                echo "</table>";                
             ?>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Schließen</button>
       </div>
     </div>
-
   </div>
 </div>
-
-
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -412,23 +398,23 @@ echo "</table>";
     });
 
     //Script für die Suche
-    function myFunction() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById('myInput');
-        filter = input.value.toUpperCase();
-        table = document.getElementById('myTable');
-        tr = table.getElementsByTagName('tr');
-            for (i = 0 ; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName('td')[1];
-                if (td) {
-                    txtValue = td.textContent || td.innerText;
-                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = '';
-                    } else {
-                        tr[i].style.display = 'none';
-                    }
-                }       
-            }
-    }
+function myFunction() {
+    var input, filter, table, tr, td, i, txtValue;
+    input = document.getElementById('myInput');
+    filter = input.value.toUpperCase();
+    table = document.getElementById('myTable');
+    tr = table.getElementsByTagName('tr');
+        for (i = 0 ; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName('td')[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }       
+        }
+}
 </script>   
 </body>          

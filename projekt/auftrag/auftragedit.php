@@ -1,17 +1,11 @@
 <!DOCTYPE html><html lang="de"><head>
-
-
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-
 <title>Auftrag</title>
-
 <style>
-
-
 div.sticky {
   position: sticky;
   bottom: 0;
@@ -19,12 +13,10 @@ div.sticky {
   width: 100%;
   font-size: 15px;
   background-color: #FFFFFF;
-  
 }
 * {
   box-sizing: border-box;
 }
-
 #myInput {
 background-position: 10px 10px;
 background-repeat: no-repeat;
@@ -34,34 +26,27 @@ padding: 12px 20px 12px 40px;
 border: 1px solid #ddd;
 margin-bottom: 12px;
 }
-
 #myTable {
 border-collapse: collapse;
 width: 100%;
 border: 1px solid #ddd;
 font-size: 18px;
 }
-
 #myTable th, #myTable td {
 text-align: left;
 padding: 12px;
 }
-
 #myTable tr {
 border-bottom: 1px solid #ddd;
 }
-
 #myTable tr.header, #myTable tr:hover {
 background-color: #f1f1f1;
 }
 </style>
-
 </head><body>
 <div class="alert alert-info" role="alert">
 <h1>Auftragsübersicht</h1></div>
-
 <?php
-
 session_start();
 if(isset($_POST["auswahledit"])){
 $repidsession = $_POST['auswahledit'];
@@ -70,12 +55,11 @@ if(isset($_POST["eintragen"])){
     $repidsession = $_POST['eintragen'];
     $_SESSION['eintragen'] = $repidsession;}
 
-    if(isset($_SESSION["auswahledit"])){
-   $name = $_SESSION['auswahledit'];}
-   else{
-    $name = $_SESSION['eintragen']; 
-   }
-
+if(isset($_SESSION["auswahledit"])){
+$name = $_SESSION['auswahledit'];}
+else{
+$name = $_SESSION['eintragen']; 
+}
  
 // 1. Verbindung zur Datenbank herstellen
 $host_name = 'localhost';
@@ -164,11 +148,12 @@ echo "</table>";
 ?>
 
 <div class="sticky">
-<p>
-<input type="submit" name="bearbeiten" formaction="aedit.php" value="ausgewählten Datensatz bearbeiten"  class="btn btn-info btn-lg"><input type="submit" name="löschen" formaction="adelet.php" value="ausgewählte Datensätze löschen" class="btn btn-danger btn-lg">
-</p>
-<br>
+  <p>
+  <input type="submit" name="bearbeiten" formaction="aedit.php" value="ausgewählten Datensatz bearbeiten"  class="btn btn-info btn-lg"><input type="submit" name="löschen" formaction="adelet.php" value="ausgewählte Datensätze löschen" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure you want to delete this item?');" />
+  </p>
+  <br>
 </div>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
