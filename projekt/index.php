@@ -25,33 +25,62 @@
  <button class="button" style="vertical-align:left" data-toggle="modal" data-target="#exampleModalPreview">
   <span>Kunde</span> 
 </button>
-
-
+<p>
+<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+</p>
+  <table id="myTable">
+    <tr class="header">
+      <th></th>
+    </tr>
 <?php
     $pdo = new PDO('mysql:host=localhost;dbname=dbkfz', 'root', '');
 
     $sql = "SELECT kundennummer, anrede, titel, vorname, nachname, gebdat, strasse, plz, ort, telefon, email, newsletter, kommentar, kundeseit FROM kunde";
     foreach ($pdo->query($sql) as $row) { ?>
 
-
-<div class="w3-container">
-  <button onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='block'" class="w3-button"> <li href="h" ><?php echo $row['anrede']." ".$row['vorname']." ".$row['kundennummer']; ?></li></button>
-  <div id="id01<?php echo $row['kundennummer']; ?>" class="w3-modal">
-    <div class="w3-modal-content">
-      <div class="w3-container">
-        <span onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-          <p> <li><?php echo  $row['kundennummer']." <br /> ".$row['anrede']." <br />".$row['titel']."<br />".$row['vorname']."<br />".$row['nachname']."<br />".$row['gebdat']."<br />".$row['strasse']."<br />".$row['plz']."<br />".$row['ort']."<br />".$row['telefon']."<br />".$row['email']."<br />".$row['newsletter']."<br />".$row['kommentar']."<br />".$row['kundeseit']; ?></li></p>
-          <a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Fahrzeug Anlegen</a>
+    <tr>
+      <td> 
+        <button onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='block'" class="w3-button"><?php echo "<H4>".$row['kundennummer']." | ".$row['anrede']." ".$row['vorname']." ".$row['nachname']."<H4>"; ?></button>
+      </td>
+    </tr>
+  <div class="w3-container">
+    <div id="id01<?php echo $row['kundennummer']; ?>" class="w3-modal">
+      <div class="w3-modal-content">
+        <div class="w3-container">
+          <span onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+            <p> <li><?php echo  $row['kundennummer']." <br /> ".$row['anrede']." <br />".$row['titel']."<br />".$row['vorname']."<br />".$row['nachname']."<br />".$row['gebdat']."<br />".$row['strasse']."<br />".$row['plz']."<br />".$row['ort']."<br />".$row['telefon']."<br />".$row['email']."<br />".$row['newsletter']."<br />".$row['kommentar']."<br />".$row['kundeseit']; ?></li></p>
+            <a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Fahrzeug Anlegen</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 <?php } ?>
-
+</table>
 <!-- Suche -->
+<script>
+function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
 
-
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 <!-- Suche ende -->
           
 
