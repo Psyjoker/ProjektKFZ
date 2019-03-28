@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 4.8.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 14. Mrz 2019 um 13:40
--- Server-Version: 10.1.34-MariaDB
--- PHP-Version: 7.2.7
+-- Erstellungszeit: 28. Mrz 2019 um 16:25
+-- Server-Version: 10.1.32-MariaDB
+-- PHP-Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -73,18 +73,19 @@ CREATE TABLE `kunde` (
   `email` varchar(20) COLLATE utf8_german2_ci NOT NULL,
   `newsletter` tinyint(1) NOT NULL,
   `kommentar` text COLLATE utf8_german2_ci NOT NULL,
-  `kundeseit` date NOT NULL
+  `kundeseit` date NOT NULL,
+  `anzeige` varchar(4) COLLATE utf8_german2_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_german2_ci;
 
 --
 -- Daten für Tabelle `kunde`
 --
 
-INSERT INTO `kunde` (`kundennummer`, `anrede`, `titel`, `vorname`, `nachname`, `gebdat`, `strasse`, `plz`, `ort`, `telefon`, `email`, `newsletter`, `kommentar`, `kundeseit`) VALUES
-(1, 'Herr', 'Dr.', 'Michael', 'Kronreif', '1992-04-05', 'Rigaus', 5441, 'Abtenau', '0664377730', 'kronreif@kronreif.at', 1, 'Nicht wichtig', '2019-02-12'),
-(2, 'Frau', 'Dr.', 'Christina', 'Kronreif', '1992-04-16', 'Rigaus', 5441, 'Abtenau', '0664377730', 'kronreif@kronreif.at', 1, 'Nicht wichtig', '2019-02-12'),
-(3, '0', '', '', '', '0000-00-00', '', 0, '', '0043', '', 0, '', '0000-00-00'),
-(4, '0', '', '', '', '0000-00-00', '', 0, '', '0043', '', 0, '', '0000-00-00');
+INSERT INTO `kunde` (`kundennummer`, `anrede`, `titel`, `vorname`, `nachname`, `gebdat`, `strasse`, `plz`, `ort`, `telefon`, `email`, `newsletter`, `kommentar`, `kundeseit`, `anzeige`) VALUES
+(1, 'Herr', 'Dr.', 'Michael', 'Kronreif', '1992-04-05', 'Rigaus', 5441, 'Abtenau', '0664377730', 'kronreif@kronreif.at', 1, 'Nicht wichtig', '2019-02-12', ''),
+(2, 'Frau', 'Dr.', 'Christina', 'Kronreif', '1992-04-16', 'Rigaus', 5441, 'Abtenau', '0664377730', 'kronreif@kronreif.at', 1, 'Nicht wichtig', '2019-02-12', ''),
+(20, 'Frau', 'Luder', 'Bibi', 'Butterbrot', '0000-00-00', 'Walststrasse 7', 4848, 'Lenzing', '0043676445334', 'luder@gmail.com', 0, 'Gratis Annanas', '2019-03-24', ''),
+(21, '0', 'dsf', 'asfd', 'adas', '0000-00-00', 'dasd', 0, '', '0043', '', 0, '', '0000-00-00', 'nein');
 
 -- --------------------------------------------------------
 
@@ -137,19 +138,27 @@ INSERT INTO `reparatur` (`repid`, `fzid`, `bemerkung`, `datum`) VALUES
 (2, 2, 'Motorschaden sdfds', '2019-02-14'),
 (9, 1, 'Neuer ', '2019-02-14'),
 (14, 2, 'Ich bin der Motorschaden2', '2019-02-27'),
+(16, 1, 'Das ist ein Test', '2019-02-13'),
 (17, 1, 'Das ist ein Test', '2019-02-13'),
+(18, 2, 'Motor ruckeltee', '2019-02-14'),
 (22, 1, 'Nochmals testen', '2019-02-07'),
 (23, 1, 'Id iebergabe', '2019-02-07'),
+(25, 1, 'Das ist ein Test', '2019-02-20'),
+(26, 1, 'Das ist ein Test', '2019-02-20'),
 (27, 1, 'sdf', '2019-02-13'),
 (28, 1, 'sdf', '2019-02-06'),
 (30, 1, 'sdf', '2019-02-06'),
 (31, 1, 'sdf', '2019-02-06'),
 (32, 1, 'sdf', '2019-02-06'),
+(33, 1, 'sdf', '2019-02-06'),
+(34, 1, 'sdf', '2019-02-06'),
 (35, 1, 'sdfsdf', '2019-02-21'),
 (36, 1, 'sdfsdf', '2019-02-14'),
 (37, 1, 'xdfv', '2019-02-07'),
+(38, 1, 'Schon wieder', '2019-02-13'),
 (39, 1, 'Schon wieder', '2019-02-13'),
 (40, 1, 'sdf', '2019-02-07'),
+(41, 1, 'sdf', '2019-02-07'),
 (42, 1, 'sdf', '2019-02-07'),
 (43, 1, 'sdf', '2019-02-07'),
 (44, 1, 'sdf', '2019-02-07'),
@@ -160,19 +169,13 @@ INSERT INTO `reparatur` (`repid`, `fzid`, `bemerkung`, `datum`) VALUES
 (50, 1, 'sdfsd', '2019-02-21'),
 (54, 2, 'Neue Auswahl 2', '2019-01-30'),
 (55, 2, '324', '2019-02-07'),
+(56, 2, 'sdfsdf', '2019-02-15'),
 (57, 1, 'sdf', '2019-02-13'),
 (58, 2, 'sdf', '2019-02-21'),
 (60, 2, 'sdf', '2019-02-14'),
-(64, 2, 'Motor ist defekt', '2019-02-25'),
-(65, 1, 'Hallo ', '2019-03-21'),
-(66, 2, 'Motorschaden', '2019-03-28'),
-(69, 2, 'Das ist ein wahnsinn', '2019-03-06'),
-(72, 2, 'Neuer Test3', '2019-03-05'),
-(73, 2, 'Test', '2019-03-22'),
-(75, 1, 'Bremse defekt', '2019-03-07'),
-(76, 2, 'Jetzt passt', '2019-03-20'),
-(77, 1, 'Motorschaden', '2019-03-10'),
-(78, 1, 'Motorschaden', '2019-03-14');
+(61, 2, 'sdf', '2019-02-13'),
+(63, 1, 'Das ist der Test', '2019-02-15'),
+(64, 2, 'Motor ist defekt', '2019-02-25');
 
 -- --------------------------------------------------------
 
@@ -201,12 +204,7 @@ INSERT INTO `reparaturdetails` (`repdetid`, `repid`, `teileid`, `anzahl`) VALUES
 (39, 64, 7, 4),
 (40, 64, 16, 5),
 (42, 55, 11, 5),
-(44, 14, 16, 3),
-(45, 35, 7, 6),
-(46, 58, 7, 7),
-(51, 76, 16, 4),
-(52, 76, 18, 2),
-(55, 75, 16, 5);
+(44, 14, 16, 3);
 
 -- --------------------------------------------------------
 
@@ -311,7 +309,7 @@ ALTER TABLE `fahrzeug`
 -- AUTO_INCREMENT für Tabelle `kunde`
 --
 ALTER TABLE `kunde`
-  MODIFY `kundennummer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `kundennummer` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT für Tabelle `rechnungdetails`
@@ -323,13 +321,13 @@ ALTER TABLE `rechnungdetails`
 -- AUTO_INCREMENT für Tabelle `reparatur`
 --
 ALTER TABLE `reparatur`
-  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `repid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT für Tabelle `reparaturdetails`
 --
 ALTER TABLE `reparaturdetails`
-  MODIFY `repdetid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
+  MODIFY `repdetid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT für Tabelle `teile`
