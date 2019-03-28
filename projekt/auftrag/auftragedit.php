@@ -110,10 +110,11 @@ $_SESSION['repid'] = $reparaturId;
     echo "<p>" . "<b>" . "Bemerkung: "  . "</b>" . "$bez2" . "</p>";
     echo "</form>";?>
     </div>
-    <div class="col-sm">
-     <?php
-     echo "<a href='auftrag.php'  class='btn btn-secondary btn-lg'>Zurück zur Übersicht</a>";?> <form method='post'><input type="submit" name="drucken" formaction="auftragdruck.php" value="Reparaturauftrag drucken"  class="btn btn-info btn-lg" formtarget="_blank">
-    
+    <div class="col-sm-right" >
+    <a href='auftrag.php'  class='btn btn-secondary btn-lg'>Zurück zur Übersicht</a> 
+    </div>
+    <div class="col-sm" >
+    <form method='post'><input type="submit" name="drucken" formaction="auftragdruck.php" value="Auftrag drucken"  class="btn btn-info btn-lg" formtarget="_blank"/>
     </div>
     </div>
 </div>
