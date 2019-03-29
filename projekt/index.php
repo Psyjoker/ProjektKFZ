@@ -22,45 +22,61 @@
   </ul>
 </div>
 </head>
- <button class="button" style="vertical-align:left" data-toggle="modal" data-target="#exampleModalPreview">
-  <span>Kunde</span> 
-</button>
-<p>
-<input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-</p>
-  <table id="myTable">
-    <tr class="header">
-      <th></th>
-    </tr>
+  <button class="button" style="vertical-align:left" data-toggle="modal" data-target="#exampleModalPreview">
+    <span>Kunde</span> 
+  </button>
+  <p>
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
+  </p>
+<table id="myTable">
+  <tr class="header">
+    <th></th>
+  </tr>
+
 <?php
     $pdo = new PDO('mysql:host=localhost;dbname=dbkfz', 'root', '');
 
     $sql = "SELECT kundennummer, anrede, titel, vorname, nachname, gebdat, strasse, plz, ort, telefon, email, newsletter, kommentar, kundeseit, anzeige FROM kunde";
     foreach ($pdo->query($sql) as $row) { ?>
 
+  <tr>
+    <td> 
+      <button onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='block'" class="w3-button">
+        <?php
+        $anzeigen= "<h4>".$row['kundennummer']." | ".$row['anrede']." ".$row['vorname']." ".$row['nachname']."<h4>";
 
-    <tr>
-      <td> 
-        <button onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='block'" class="w3-button">
-          <?php
-          $anzeigen= "<H4>".$row['kundennummer']." | ".$row['anrede']." ".$row['vorname']." ".$row['nachname']."<H4>";
-
-            if ($row['anzeige'] > null ){
-               }
-            else {
-              echo $anzeigen;
-                };
-          ?>
-        </button>
-      </td>
-    </tr>
+          if ($row['anzeige'] > null ){}
+          else {
+            echo $anzeigen;
+            };
+        ?>
+      </button>
+    </td>
+  </tr>
   <div class="w3-container">
     <div id="id01<?php echo $row['kundennummer']; ?>" class="w3-modal">
       <div class="w3-modal-content">
         <div class="w3-container">
           <span onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <p> <li><?php echo  $row['kundennummer']." <br /> ".$row['anrede']." <br />".$row['titel']."<br />".$row['vorname']."<br />".$row['nachname']."<br />".$row['gebdat']."<br />".$row['strasse']."<br />".$row['plz']."<br />".$row['ort']."<br />".$row['telefon']."<br />".$row['email']."<br />".$row['newsletter']."<br />".$row['kommentar']."<br />".$row['kundeseit']; ?></li></p>
-            <a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Fahrzeug Anlegen</a>
+            <li><?php echo
+              $row['kundennummer']." <br /> "
+              .$row['anrede']." <br />"
+              .$row['titel']."<br />"
+              .$row['vorname']."<br />"
+              .$row['nachname']."<br />"
+              .$row['gebdat']."<br />"
+              .$row['strasse']."<br />"
+              .$row['plz']."<br />"
+              .$row['ort']."<br />"
+              .$row['telefon']."<br />"
+              .$row['email']."<br />"
+              .$row['newsletter']."<br />"
+              .$row['kommentar']."<br />"
+              .$row['kundeseit']; 
+            ?></li>
+          <div>
+          <button><a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Neues Fahrzeug Anlegen</a></button>
+              </div>
         </div>
       </div>
     </div>
@@ -73,14 +89,14 @@
 <!-- Suche -->
 <script>
 function myFunction() {
-  // Declare variables
+  // Declarierte Variablen für Filter
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
 
-  // Loop through all table rows, and hide those who don't match the search query
+  // Loop für Filter/Suche
   for (i = 0; i < tr.length; i++) {
     td = tr[i].getElementsByTagName("td")[0];
     if (td) {
@@ -95,10 +111,21 @@ function myFunction() {
 }
 </script>
 <!-- Suche ende -->
-          
+<script>
+// Modal Zuweisung
+var modal = document.getElementById('id01<?php echo $row['kundennummer']; ?>');
 
-  
+// Bei click modal schließen
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>
 
+
+
+<!-- Button Kunde anlegen-->
 <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -108,7 +135,8 @@ function myFunction() {
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <!-- Modal -->
+<!-- Button Kunde anlegen ende -->
+<!-- Modal Kunde anlegen -->
         <div class="modal-body">
             <form action="kunden/kunden.php" method="GET">
               <table border="0" cellspacing="2" cellpadding="2">
@@ -214,7 +242,7 @@ function myFunction() {
     </div>
   </div>
 </div>
-<!-- Modal ende -->
+<!-- Modal Kunde anlegen ende -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

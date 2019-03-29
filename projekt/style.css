@@ -1,7 +1,7 @@
 .button {
   display: inline-block;
   border-radius: 4px;
-  background-color: #3612d4;
+  background-color: rgba(30,87,153,1);
   border: none;
   color: rgb(255, 255, 255);
   text-align: center;
@@ -43,7 +43,10 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: rgb(255, 255, 255);
+  background: -moz-linear-gradient(left, rgba(125,185,232,0) 0%, rgba(30,87,153,1) 100%); 
+  background: -webkit-linear-gradient(left, rgba(125,185,232,0) 0%,rgba(30,87,153,1) 100%);
+  background: linear-gradient(to right, rgba(125,185,232,0) 0%,rgba(30,87,153,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#007db9e8', endColorstr='#1e5799',GradientType=1 );
 }
 li {
   float: left;
@@ -56,7 +59,26 @@ li a {
   text-decoration: none;
 }
 li a:hover:not(.active) {
-  background-color: rgb(190, 182, 182);
+  background: -moz-linear-gradient(-45deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+li {
+  float: left;
+}
+li a {
+  display: block;
+  color: rgb(49, 8, 8);
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+li a:hover:not(.active) {
+  background: -moz-linear-gradient(-45deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(-45deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(135deg, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00000000', endColorstr='#a6000000',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 .active {
   background-color: #4CAF50;
@@ -74,133 +96,17 @@ div.sticky {
   box-sizing: border-box;
 }
 
-#myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
+label {
+  display: block;
+  font: 1rem 'Fira Sans', sans-serif;
 }
 
-#myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
+input,
+label {
+  margin: .4rem 0;
 }
 
-#myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
+.note {
+  font-size: .8em;
 }
 
-#myTable tr {
-  border-bottom: 1px solid #ddd;
-}
-
-#myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
-}
-
-  .affix {
-    top: 20px;
-    z-index: 9999 !important;
-  }
-
-  #search {
-    float: right;
-    margin-top: 9px;
-    width: 250px;
-}
-
-.search {
-    padding: 5px 0;
-    width: 230px;
-    height: 30px;
-    position: relative;
-    left: 10px;
-    float: left;
-    line-height: 22px;
-}
-
-    .search input {
-        position: absolute;
-        width: 0px;
-        float: Left;
-        margin-left: 210px;
-        -webkit-transition: all 0.7s ease-in-out;
-        -moz-transition: all 0.7s ease-in-out;
-        -o-transition: all 0.7s ease-in-out;
-        transition: all 0.7s ease-in-out;
-        height: 30px;
-        line-height: 18px;
-        padding: 0 2px 0 2px;
-        border-radius:1px;
-    }
-
-        .search:hover input, .search input:focus {
-            width: 200px;
-            margin-left: 0px;
-        }
-
-.btn {
-    height: 30px;
-    position: absolute;
-    right: 0;
-    top: 5px;
-    border-radius:1px;
-}
-
-
-#myInput {
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-  }
-
-  #myTable {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
-  }
-
-  #myTable th, #myTable td {
-  text-align: left;
-  padding: 12px;
-  }
-
-  #myTable tr {
-  border-bottom: 1px solid #ddd;
-  }
-
-  #myTable tr.header, #myTable tr:hover {
-  background-color: #f1f1f1;
-  }
-
-  #myTabledd {
-  border-collapse: collapse;
-  width: 100%;
-  border: 1px solid #ddd;
-  font-size: 18px;
-  }
-
-  #myTabledd th, #myTabledd td {
-  text-align: left;
-  padding: 12px;
-  }
-
-  #myTabledd tr {
-  border-bottom: 1px solid #ddd;
-  }
-
-  #myTabledd tr.header, #myTabledd tr:hover {
-  background-color: #f1f1f1;
-  }
