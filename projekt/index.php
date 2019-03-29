@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link href="https://fonts.googleapis.com/css?family=Germania+One" rel="stylesheet"> 
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,20 +26,17 @@
   <button class="button" style="vertical-align:left" data-toggle="modal" data-target="#exampleModalPreview">
     <span>Kunde</span> 
   </button>
-  <p>
-    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names..">
-  </p>
+  <p class="sample"><input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Kunden suche..."></p>
+
 <table id="myTable">
   <tr class="header">
     <th></th>
   </tr>
-
 <?php
     $pdo = new PDO('mysql:host=localhost;dbname=dbkfz', 'root', '');
 
     $sql = "SELECT kundennummer, anrede, titel, vorname, nachname, gebdat, strasse, plz, ort, telefon, email, newsletter, kommentar, kundeseit, anzeige FROM kunde";
     foreach ($pdo->query($sql) as $row) { ?>
-
   <tr>
     <td> 
       <button onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='block'" class="w3-button">
@@ -113,7 +111,7 @@ function myFunction() {
 <!-- Suche ende -->
 <script>
 // Modal Zuweisung
-var modal = document.getElementById('id01<?php echo $row['kundennummer']; ?>');
+var modal = document.getElementById('id01');
 
 // Bei click modal schließen
 window.onclick = function(event) {
