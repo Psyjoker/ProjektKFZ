@@ -56,31 +56,70 @@
       <div class="w3-modal-content">
         <div class="w3-container">
           <span onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
-            <li><?php echo
-              $row['kundennummer']." <br /> "
-              .$row['anrede']." <br />"
-              .$row['titel']."<br />"
-              .$row['vorname']."<br />"
-              .$row['nachname']."<br />"
-              .$row['gebdat']."<br />"
-              .$row['strasse']."<br />"
-              .$row['plz']."<br />"
-              .$row['ort']."<br />"
-              .$row['telefon']."<br />"
-              .$row['email']."<br />"
-              .$row['newsletter']."<br />"
-              .$row['kommentar']."<br />"
-              .$row['kundeseit']; 
-            ?></li>
-          <div>
-          <button><a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Neues Fahrzeug Anlegen</a></button>
-              </div>
+          <div class="row">
+  <div class="column">
+  <h2>Kunde</h2>
+  <li><?php echo
+        $row['kundennummer']." <br /> "
+        .$row['anrede']." <br />"
+        .$row['titel']."<br />"
+        .$row['vorname']."<br />"
+        .$row['nachname']."<br />"
+        .$row['gebdat']."<br />"
+        .$row['strasse']."<br />"
+        .$row['plz']."<br />"
+        .$row['ort']."<br />"
+        .$row['telefon']."<br />"
+        .$row['email']."<br />"
+        .$row['newsletter']."<br />"
+        .$row['kommentar']."<br />"
+        .$row['kundeseit']; 
+     ?></li>
+  </div>
+  <div class="column" style="background-color:#bbb;"> 
+    <div>
+      <button type="button" class="btn btn-success"><a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Neues Fahrzeug Anlegen</a></button>
+    </div>
+
+    <div class="column" style="background-color:#bbb;"> 
+<?php
+    $pdo = new PDO('mysql:host=localhost;dbname=dbkfz', 'root', '');
+
+    $sql = "SELECT fzid, kundeid,	marke, typ,	kennzeichen, fahrgestellnummer, nationalcode,	motorkennzeichen,	getriebekennzeichen, farbe, treibstoff,	leistung,	hubraum, erstzulassung FROM fahrzeug";
+    foreach ($pdo->query($sql) as $row) { ?>
+    <h2>Fahrzeuge</h2>
+    <li><?php echo
+      $row['fzid']." <br /> "
+      .$row['kundeid']." <br />"
+      .$row['marke']." <br />"
+      .$row['typ']." <br />"
+      .$row['kennzeichen']." <br />"
+      .$row['fahrgestellnummer']." <br />"
+      .$row['nationalcode']." <br />"
+      .$row['motorkennzeichen']." <br />"
+      .$row['getriebekennzeichen']." <br />"
+      .$row['farbe']." <br />"
+      .$row['treibstoff']." <br />"
+      .$row['leistung']." <br />"
+      .$row['hubraum']." <br />"
+      .$row['erstzulassung']; 
+            ?> </li>
+
+ </div>
+<?php }} ?>
+
+  </div>
+</div>
+           
+        
+
+         
         </div>
       </div>
     </div>
   </div>
 
-<?php } ?>
+
 </table>
 
 
@@ -142,7 +181,7 @@ window.onclick = function(event) {
                   <tr>
                     <td align="right">Kundennummer:</td>
                     <td>
-                      <input maxlength="20" name="txtkundennummer" size="20" type="text" />
+                      <input maxlength="20" name="txtkundennummer" size="20" type="text" required />
                     </td>
                   </tr>
                   <tr>
@@ -163,13 +202,13 @@ window.onclick = function(event) {
                   <tr>
                     <td align="right">Vorname:</td>
                     <td>
-                      <input maxlength="50" name="txtvorname" size="20" type="text" />
+                      <input maxlength="50" name="txtvorname" size="20" type="text" required />
                     </td>
                   </tr>
                   <tr>
                     <td align="right">Nachname:</td>
                     <td>
-                      <input maxlength="50" name="txtnachname" size="20" type="text" />
+                      <input maxlength="50" name="txtnachname" size="20" type="text" required />
                     </td>
                   </tr>
                   <tr>
@@ -180,19 +219,19 @@ window.onclick = function(event) {
                   <tr>
                     <td align="right">Strasse:</td>
                     <td>
-                      <input maxlength="50" name="txtstrasse" size="20" type="text" />
+                      <input maxlength="50" name="txtstrasse" size="20" type="text" required />
                     </td>
                   </tr>
                   <tr>
                   <td align="right">PLZ:</td>
                   <td>
-                    <input maxlength="5" name="txtplz" size="6" type="text" />
+                    <input maxlength="5" name="txtplz" size="6" type="text" required />
                   </td>
                   </tr>
                   <tr>
                     <td align="right">Ort:</td>
                     <td>
-                      <input maxlength="50" name="txtort" size="20" type="text" />
+                      <input maxlength="50" name="txtort" size="20" type="text" required />
                     </td>
                   </tr>
                   <tr>
@@ -226,7 +265,7 @@ window.onclick = function(event) {
                     <tr>
                       <td align="right">Kunde seit:</td>
                       <td>
-                        <input maxlength="50" name="txtkundeseit" size="10" type="date" />
+                        <input maxlength="50" name="txtkundeseit" size="10" type="date" required />
                       </td>
                     </tr>
                 </tbody>
