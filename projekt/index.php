@@ -21,8 +21,20 @@
       <li><a href="fahrzeuge/fahrzeug.html">Reperatur</a></li>  
     </ul>
   </ul>
+  
 </div>
-</head>
+</head> 
+<style>
+body { 
+  background-color: rgba(3247,247,247);
+  background-image: url('logo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right top 65px; 
+  background-size: auto;
+}
+</style>
+<body>
   <button class="button" style="vertical-align:left" data-toggle="modal" data-target="#exampleModalPreview">
     <span>Kunde</span> 
   </button>
@@ -75,7 +87,11 @@
         .$row['kommentar']."<br />"
         .$row['kundeseit']; 
      ?></li>
-  </div>
+  <form>
+
+    <button  type="submit" class="btn btn-danger" href="anzeige=nein">Kunde LÖSCHEN</a></button> kunde/anzeige/nein
+  </form>
+  </div> 
   <div class="column" style="background-color:#bbb;"> 
     <div>
       <button type="button" class="btn btn-success"><a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Neues Fahrzeug Anlegen</a></button>
@@ -106,14 +122,12 @@
             ?> </li>
 
  </div>
-<?php }} ?>
+<?php } } ?>
 
   </div>
 </div>
            
-        
-
-         
+       
         </div>
       </div>
     </div>
