@@ -89,7 +89,7 @@ body {
      ?></li>
   <form>
 
-    <button  type="submit" class="btn btn-danger" href="anzeige=nein">Kunde LÖSCHEN</a></button> kunde/anzeige/nein
+  <button type="button" class="btn btn-danger"><a href="invisible.php?kundennummer=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Kunde LÖSCHEN</a></button> kunde/anzeige/nein
   </form>
   </div> 
   <div class="column" style="background-color:#bbb;"> 
