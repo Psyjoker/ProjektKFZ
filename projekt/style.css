@@ -1,3 +1,4 @@
+
 .button {
   display: inline-block;
   border-radius: 4px;
@@ -128,4 +129,11 @@ ul{
   content: "";
   display: table;
   clear: both;
+}
+
+body { 
+  background-image: url('logo.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center; 
 }
