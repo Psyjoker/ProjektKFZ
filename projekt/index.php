@@ -21,25 +21,12 @@
       <li><a href="fahrzeuge/fahrzeug.html">Reperatur</a></li>  
     </ul>
   </ul>
-  
 </div>
-</head> 
-<style>
-body { 
-  background-color: rgba(3247,247,247);
-  background-image: url('logo.jpg');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position: right top 65px; 
-  background-size: auto;
-}
-</style>
-<body>
+</head>
   <button class="button" style="vertical-align:left" data-toggle="modal" data-target="#exampleModalPreview">
     <span>Kunde</span> 
   </button>
   <p class="sample"><input  type="text" id="myInput" onkeyup="myFunction()" placeholder="Kunden suche..."></p>
-
 <table id="myTable">
   <tr class="header">
     <th></th>
@@ -85,25 +72,20 @@ body {
         .$row['email']."<br />"
         .$row['newsletter']."<br />"
         .$row['kommentar']."<br />"
-        .$row['kundeseit']; 
+        .$row['kundeseit'];
      ?></li>
-  <form>
-
-  <button type="button" class="btn btn-danger"><a href="invisible.php?kundennummer=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Kunde LÖSCHEN</a></button> kunde/anzeige/nein
-  </form>
-  </div> 
+  </div>
   <div class="column" style="background-color:#bbb;"> 
     <div>
       <button type="button" class="btn btn-success"><a href="fahrzeuge/fahrzeugeingabe.php?kundeid=<?= htmlspecialchars(urlencode($row['kundennummer']), ENT_COMPAT, 'UTF-8') ?> "btn btn-primary">Neues Fahrzeug Anlegen</a></button>
     </div>
-
-    <div class="column" style="background-color:#bbb;"> 
+      <span onclick="document.getElementById('id01<?php echo $row['kundennummer']; ?>').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+      <h2>Fahrzeuge</h2>
 <?php
     $pdo = new PDO('mysql:host=localhost;dbname=dbkfz', 'root', '');
 
     $sql = "SELECT fzid, kundeid,	marke, typ,	kennzeichen, fahrgestellnummer, nationalcode,	motorkennzeichen,	getriebekennzeichen, farbe, treibstoff,	leistung,	hubraum, erstzulassung FROM fahrzeug";
     foreach ($pdo->query($sql) as $row) { ?>
-    <h2>Fahrzeuge</h2>
     <li><?php echo
       $row['fzid']." <br /> "
       .$row['kundeid']." <br />"
@@ -119,15 +101,14 @@ body {
       .$row['leistung']." <br />"
       .$row['hubraum']." <br />"
       .$row['erstzulassung']; 
-            ?> </li>
+     ?> </li>
 
  </div>
-<?php } } ?>
-
+<?php } }?>
+</div>
   </div>
 </div>
-           
-       
+                      
         </div>
       </div>
     </div>
@@ -300,8 +281,6 @@ window.onclick = function(event) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     
-                  
-   
-    
+  
 </body>
 </html>
